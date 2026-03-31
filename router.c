@@ -12,7 +12,6 @@ void createRouter(){
 void addGet(char* ruta, handler func){
   Treemap* mapGet = (Treemap *)get(map, "GET");
   insert(mapGet, ruta, func);
-  printf("ruta: %s\n", ruta);
 }
 
 void route(HttpRequest* req, HttpResponse* res){
