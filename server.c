@@ -11,7 +11,7 @@
 void* handle_request(void* fd_pointer);
 
 ServerBuilder* createServerBuilder(){
-  ServerBuilder* builder = malloc(sizeof(Server));
+  ServerBuilder* builder = malloc(sizeof(ServerBuilder));
   return builder;
 }
 

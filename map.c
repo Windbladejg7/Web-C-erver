@@ -33,6 +33,7 @@ Hashmap* createHashmap(int capacity){
 void resize(void* map){
   Hashmap* m = (Hashmap *)map;
   int new_capacity = m->capacity*2;
+  free(m->storage);
   m->storage = calloc(new_capacity, sizeof(Node*));
   m->capacity = new_capacity;
   
