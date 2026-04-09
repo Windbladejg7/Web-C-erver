@@ -1,21 +1,21 @@
-#include "treemap.h"
+#include "radixtreemap.h"
 #include "map.h"
 #include "router.h"
 
-Treemap* map;
+RadixTree* map;
 
 void createRouter(){
-  map = createTreemap();
-  insert(map, "GET", createTreemap());
+  map = createRadixTree();
+  insert(map, "GET", createRadixTree());
 }
 
 void addGet(char* ruta, handler func){
-  Treemap* mapGet = (Treemap *)get(map, "GET");
+  RadixTree* mapGet = (RadixTree *)get(map, "GET");
   insert(mapGet, ruta, func);
 }
 
 void route(HttpRequest* req, HttpResponse* res){
-  Treemap* m = (Treemap *)get(map, req->method);
+  RadixTree* m = (RadixTree *)get(map, req->method);
   handler func = (handler)get(m, req->uri);
   if(func != NULL){
     func(req, res);

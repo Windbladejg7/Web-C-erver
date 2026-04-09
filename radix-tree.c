@@ -3,19 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "radixtreemap.h"
 
 #define CHILDREN_SIZE 5
-
-typedef struct node{
-  char* prefix;
-  void* value;
-  ArrayList* children;
-  bool isTerminal;
-}Node;
-
-typedef struct radix{
-  Node* root;
-}RadixTree;
 
 Node* createNode(char* prefix, void* value, bool isTerminal){
   Node* node = malloc(sizeof(Node));
@@ -40,7 +30,8 @@ int commonPrefixLen(char* s1, char* s2){
     return i;
 }
 
-void insert(RadixTree* radixTree, char* prefix, void* value){
+void insert(void* m, char* prefix, void* value){
+  RadixTree* radixTree = (RadixTree *)m;
   int position = 0;
   int prefixLen = strlen(prefix);
   
@@ -101,7 +92,8 @@ void iterate(RadixTree* radixTree, Node* node) {
   }
 }
 
-void* get(RadixTree* radixTree, char* key){
+void* get(void* m, char* key){
+  RadixTree* radixTree = (RadixTree *)m;
   int position = 0;
   int prefixLen = strlen(key);
   
