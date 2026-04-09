@@ -62,6 +62,11 @@ void insert(void* map, char* key, void* value ){
 void* get(void* map, char* key){
   Hashmap* m = (Hashmap *)map;
   int index = (int)(hash((unsigned char*)key) % m->capacity);
-  return m->storage[index]->value;
+  Node* current = m->storage[index];
+  while(current!=NULL){
+    if(strcmp(current->key, key) == 0) return current->value;
+    current = current->next;
+  }
+  return NULL;
 }
 
