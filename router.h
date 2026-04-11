@@ -3,7 +3,7 @@
 
 #include "http.h"
 
-void createRouter();
+void createRouter(char* mapType);
 void addGet(char* ruta, handler func);
 void route(HttpRequest* req, HttpResponse* res);
 

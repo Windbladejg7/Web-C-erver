@@ -1,21 +1,22 @@
 #include <stdlib.h>
 #include <string.h>
-#include "map.h"
 #include "treemap.h"
+
+typedef TreeNode Node;
 
 Treemap* createTreemap(){
   Treemap* map = malloc(sizeof(Treemap));
   return map;
 }
 
-Node* createNode(char* key, void* value){
+static Node* createNode(char* key, void* value){
   Node* new_node = malloc(sizeof(Node));
   new_node->key = strdup(key);
   new_node->value = value;
   return new_node;
 }
 
-void insert(void* map, char* key, void* value){
+void treemapInsert(void* map, char* key, void* value){
   Treemap* m = (Treemap *)map;
 
   if(m->root == NULL){
@@ -47,7 +48,7 @@ void insert(void* map, char* key, void* value){
   }
 }
 
-void* get(void* map, char* key){
+void* treemapGet(void* map, char* key){
   Treemap* m = (Treemap *)map;
   Node* current = m->root;
 

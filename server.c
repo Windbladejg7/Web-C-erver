@@ -23,6 +23,10 @@ void backlogSize(ServerBuilder* builder, int backlogSize){
   builder->backlogSize = backlogSize;
 }
 
+void mapImplementation(ServerBuilder* builder, char* map){
+  builder->map = map;
+}
+
 Server* createServer(ServerBuilder* builder){
   Server* server = malloc(sizeof(Server)); 
   server->fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -46,7 +50,7 @@ Server* createServer(ServerBuilder* builder){
   
   listen(server->fd, builder->backlogSize);
   
-  createRouter();
+  createRouter(builder->map);
   
   return server;
 }

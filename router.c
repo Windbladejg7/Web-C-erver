@@ -1,22 +1,21 @@
-#include "radixtreemap.h"
-#include "map.h"
 #include "router.h"
+#include "mapfactory.h"
 
-RadixTree* map;
+Map* map;
 
-void createRouter(){
-  map = createRadixTree();
-  insert(map, "GET", createRadixTree());
+void createRouter(char* mapType){
+  map = mapFactory(mapType);
+  map->insert(map->impl, "GET", mapFactory(mapType));
 }
 
 void addGet(char* ruta, handler func){
-  RadixTree* mapGet = (RadixTree *)get(map, "GET");
-  insert(mapGet, ruta, func);
+  Map* mapGet = map->get(map->impl, "GET");
+  mapGet->insert(mapGet->impl, ruta, func);
 }
 
 void route(HttpRequest* req, HttpResponse* res){
-  RadixTree* m = (RadixTree *)get(map, req->method);
-  handler func = (handler)get(m, req->uri);
+  Map* m = map->get(map->impl, req->method);
+  handler func = (handler)m->get(m->impl, req->uri);
   if(func != NULL){
     func(req, res);
   }else{

@@ -14,12 +14,10 @@ int main(){
   ServerBuilder* builder = createServerBuilder();
   port(builder, 8080);
   backlogSize(builder, 10);
-  
+  mapImplementation(builder, "Treemap");
+
   Server* server = createServer(builder);
   addGet("/", hello);
   run(server);
 }
-
-
-
 

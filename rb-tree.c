@@ -3,6 +3,8 @@
 #include "treemap.h"
 #include "map.h"
 
+typedef TreeNode Node;
+
 Node* createNode(char* key, void* value){
   Node* node = malloc(sizeof(Node));
   node->color = RED;

@@ -6,21 +6,22 @@ enum Color{
   BLACK
 };
 
-typedef struct node{
+typedef struct treenode{
   char* key;
   void* value;
   enum Color color;
-  struct node* left;
-  struct node* right;
-  struct node* parent;
-}Node;
+  struct treenode* left;
+  struct treenode* right;
+  struct treenode* parent;
+}TreeNode;
 
 typedef struct tree{
-  Node* root;
-  Node* NIL;
+  TreeNode* root;
+  TreeNode* NIL;
 } Treemap;
 
 Treemap* createTreemap();
-Node* createNode(char* key, void* value);
+void treemapInsert(void* m, char* key, void* value);
+void* treemapGet(void* m, char* key);
 
 #endif

@@ -7,7 +7,9 @@
 
 #define CHILDREN_SIZE 5
 
-Node* createNode(char* prefix, void* value, bool isTerminal){
+typedef RadixNode Node;
+
+static Node* createNode(char* prefix, void* value, bool isTerminal){
   Node* node = malloc(sizeof(Node));
   node->prefix = strdup(prefix);
   node->value = value;
@@ -30,7 +32,7 @@ int commonPrefixLen(char* s1, char* s2){
     return i;
 }
 
-void insert(void* m, char* prefix, void* value){
+void radixInsert(void* m, char* prefix, void* value){
   RadixTree* radixTree = (RadixTree *)m;
   int position = 0;
   int prefixLen = strlen(prefix);
@@ -92,7 +94,7 @@ void iterate(RadixTree* radixTree, Node* node) {
   }
 }
 
-void* get(void* m, char* key){
+void* radixGet(void* m, char* key){
   RadixTree* radixTree = (RadixTree *)m;
   int position = 0;
   int prefixLen = strlen(key);

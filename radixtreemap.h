@@ -4,18 +4,19 @@
 #include "list.h"
 #include <stdbool.h>
 
-typedef struct node{
+typedef struct radixnode{
   char* prefix;
   void* value;
   ArrayList* children;
   bool isTerminal;
-}Node;
+}RadixNode;
 
 typedef struct radix{
-  Node* root;
+  RadixNode* root;
 }RadixTree;
 
-Node* createNode(char* prefix, void* value, bool isTerminal);
 RadixTree* createRadixTree();
+void radixInsert(void* m, char* key, void* value);
+void* radixGet(void* m, char* key);
 
 #endif
